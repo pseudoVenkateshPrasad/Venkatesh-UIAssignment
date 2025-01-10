@@ -1,0 +1,91 @@
+/* CustomModal.css */
+
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.749); /* Background overlay */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000; /* Ensures it sits above other content */
+}
+
+.modalContent {
+  background-color: rgba(245, 245, 245, 0.918);
+  padding: 20px;
+  border-radius: 8px;
+  max-width: 600px;
+  width: 100%;
+  position: relative;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.closeButton {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+h2 {
+  margin-top: 0;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+}
+
+.metaData {
+  margin: 0 1em;
+  padding: 4px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+.metaData span {
+  flex-basis: 44%;
+  text-align: left;
+  margin-bottom: 5px;
+  font-family: "Poppins", serif;
+  font-weight: 400;
+  font-size: 0.9em;
+}
+
+.title {
+  border-bottom: 1px solid #007fff;
+  font-family: "Poppins", serif;
+  font-weight: 500;
+  color: #007fff;
+}
+
+.headers {
+  color: #494949;
+
+  padding-bottom: 10px;
+  font-family: "Poppins", serif;
+  font-weight: 300;
+}
+.list {
+  color: #302f2f;
+  font-family: "Poppins", serif;
+  font-weight: 400;
+}
+
+table {
+  margin: 1em;
+}
+
+.cellStyle {
+  border: 1px solid black;
+  padding: 8px;
+  textalign: left;
+  width: 20em;
+}

@@ -1,0 +1,76 @@
+.container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+}
+
+.searchbarContainer {
+  margin: 0 2em;
+  margin-top: 2em;
+  display: flex;
+  justify-content: end;
+}
+
+.searchbar {
+  outline: none;
+  border: none;
+  padding: 0.5em;
+  width: 20em;
+  font-size: 1em;
+  background-color: transparent;
+  border-bottom: 2px solid #318ce7;
+  font-weight: 400;
+  color: #fff;
+  font-family: "Poppins", serif;
+}
+
+.searchbar:focus {
+  border: 2px solid #318ce7;
+}
+
+.title {
+  font-family: "Poppins", serif;
+  font-weight: 400;
+  color: #007fff;
+  margin: 0 1em;
+  padding: .5em;
+}
+
+.headers {
+  color: #dcdcdc;
+
+  padding-bottom: 10px;
+  font-family: "Poppins", serif;
+  font-weight: 300;
+}
+.list {
+  color: #8a8a8a;
+  font-family: "Poppins", serif;
+  font-weight: 400;
+}
+
+table {
+  margin: 2em;
+}
+
+.cellStyle {
+  border: 1px solid black;
+  padding: 8px;
+  textalign: left;
+  width: 20em;
+}
+
+.viewBtn {
+  background-color: #007fff;
+  border :  none;
+  outline: none;
+  padding : .5em 1em;
+  border-radius: 4px;
+  color : #fff;
+  cursor: pointer;
+}
