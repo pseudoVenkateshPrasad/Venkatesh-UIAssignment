@@ -1,15 +1,28 @@
 import { ALLTRANSACTIONS } from "../mockdata/data.js";
+
+// takes transaction amount and returns reward points for given amount
+
 export const calculatePoints = (amount) => {
-  let points = 0;
-  if (amount > 100) {
-    points += (amount - 100) * 2;
-    points += 50;
-  } else if (amount > 50) {
-    points += amount - 50;
+  try {
+    if (typeof amount !== "number" || amount < 0) {
+      throw new Error("Invalid amount. Amount must be a positive number.");
+    }
+
+    let points = 0;
+    if (amount > 100) {
+      points += (amount - 100) * 2;
+      points += 50;
+    } else if (amount > 50) {
+      points += amount - 50;
+    }
+    return points;
+  } catch (error) {
+    console.error("Error in calculatePoints:", error.message);
+    return 0;
   }
-  return points;
 };
 
+// Promise to fetch all the transactions
 export const fetchTransactions = () => {
   return new Promise((resolve) => {
     setTimeout(() => {
@@ -18,49 +31,86 @@ export const fetchTransactions = () => {
   });
 };
 
+// takes month number and returns String representing month
 export const getMonthName = (monthNumber) => {
-  const monthNames = [
-    "January", "February", "March", "April", "May", "June",
-    "July", "August", "September", "October", "November", "December"
-  ];
-  return monthNames[monthNumber - 1];
+  try {
+    if (
+      typeof monthNumber !== "number" ||
+      monthNumber < 1 ||
+      monthNumber > 12
+    ) {
+      throw new Error("Invalid month number. Must be between 1 and 12.");
+    }
+
+    const monthNames = [
+      "January",
+      "February",
+      "March",
+      "April",
+      "May",
+      "June",
+      "July",
+      "August",
+      "September",
+      "October",
+      "November",
+      "December",
+    ];
+    return monthNames[monthNumber - 1];
+  } catch (error) {
+    console.error("Error in getMonthName:", error.message);
+    return "Invalid month";
+  }
 };
 
-
+// this function provides detailed calculation of total money spent, total rward points of each customer and returns an array of customers with all details
 export const aggregatePoints = (transactions) => {
-  let pointsAndSpending = transactions.reduce((acc, transaction) => {
-    const month = new Date(transaction.transactionDate).getMonth() + 1;
-    const customerId = transaction.customerId;
-    const amount = transaction.amount;
-    const points = calculatePoints(amount);
-
-    if (!acc[customerId]) {
-      acc[customerId] = {
-        customerId,
-        name: transaction.customerName,
-        totalPoints: 0,
-        totalSpent: 0,
-        monthlyPoints: {},
-        monthlySpent: {},
-      };
+  try {
+    if (!Array.isArray(transactions)) {
+      throw new Error("Invalid transactions data. Must be an array.");
     }
 
-    if (!acc[customerId].monthlyPoints[month]) {
-      acc[customerId].monthlyPoints[month] = 0;
-    }
-    if (!acc[customerId].monthlySpent[month]) {
-      acc[customerId].monthlySpent[month] = 0;
-    }
+    let pointsAndSpending = transactions.reduce((acc, transaction) => {
+      try {
+        const month = new Date(transaction.transactionDate).getMonth() + 1;
+        const customerId = transaction.customerId;
+        const amount = transaction.amount;
+        const points = calculatePoints(amount);
 
-    acc[customerId].monthlyPoints[month] += points;
-    acc[customerId].monthlySpent[month] += amount;
+        if (!acc[customerId]) {
+          acc[customerId] = {
+            customerId,
+            name: transaction.customerName,
+            totalPoints: 0,
+            totalSpent: 0,
+            monthlyPoints: {},
+            monthlySpent: {},
+          };
+        }
 
-    acc[customerId].totalPoints += points;
-    acc[customerId].totalSpent += amount;
+        if (!acc[customerId].monthlyPoints[month]) {
+          acc[customerId].monthlyPoints[month] = 0;
+        }
+        if (!acc[customerId].monthlySpent[month]) {
+          acc[customerId].monthlySpent[month] = 0;
+        }
 
-    return acc;
-  }, {});
+        acc[customerId].monthlyPoints[month] += points;
+        acc[customerId].monthlySpent[month] += amount;
 
-  const resultArray = Object.values(pointsAndSpending);
-  return resultArray;
+        acc[customerId].totalPoints += points;
+        acc[customerId].totalSpent += amount;
+      } catch (error) {
+        console.error(`Error processing transaction for customer ID ${transaction.customerId}:`, error.message);
+      }
+
+      return acc;
+    }, {});
+
+    const resultArray = Object.values(pointsAndSpending);
+    return resultArray;
+  } catch (error) {
+    console.error("Error in aggregatePoints:", error.message);
+    return [];
+  }
 };

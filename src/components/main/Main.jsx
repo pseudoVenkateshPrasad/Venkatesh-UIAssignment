@@ -7,6 +7,7 @@ import MainCss from "./main.module.css";
 import Loader from "../../utility/loader/Loader";
 import CustomModal from "../../utility/modal/CustomModal";
 
+// Main Component includes the main Screen code
 function Main() {
   const [customerPoints, setCustomerPoints] = useState([]);
   const [allData, setAllData] = useState([]);
