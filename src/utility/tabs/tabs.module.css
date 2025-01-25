@@ -1,3 +1,7 @@
+body{
+  font-family: "Poppins", serif;
+}
+
 .container {
   height: 80vh;
   padding: 2em;
@@ -6,10 +10,10 @@
 .tabsContainer {
   display: flex;
   justify-content: start;
-  /* padding: 0 1em; */
 }
 
 .tabButton {
+  font-family: "Poppins", serif;
   border: none;
   padding: 0.5em 1em;
   border-radius: 0.25em 0.25em 0 0;
@@ -23,9 +27,11 @@
 .tabButton.active {
   background-color: #007bff;
   color: white;
+  font-weight: 600;
 }
 
 .active {
+  font-weight: 600;
   background-color: #007bff;
   color: white;
 }

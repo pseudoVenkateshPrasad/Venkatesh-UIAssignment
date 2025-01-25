@@ -42,39 +42,6 @@
   padding: .5em;
 }
 
-.headers {
-  color: #dcdcdc;
-
-  padding-bottom: 10px;
-  font-family: "Poppins", serif;
-  font-weight: 300;
-}
-.list {
-  color: #8a8a8a;
-  font-family: "Poppins", serif;
-  font-weight: 400;
-}
-
-table {
-  margin: 2em;
-}
-
-.cellStyle {
-  border: 1px solid black;
-  padding: 8px;
-  textalign: left;
-  width: 20em;
-}
-
-.viewBtn {
-  background-color: #007fff;
-  border :  none;
-  outline: none;
-  padding : .5em 1em;
-  border-radius: 4px;
-  color : #fff;
-  cursor: pointer;
-}
 
 .noRecords {
   margin : 2em;

@@ -67,7 +67,6 @@ const AllTransactions = () => {
   // Filter functionality for year
   const handleFilterYear = (e) => {
     const inputValue = e.target.value;
-    console.log("data", typeof inputValue);
     setFilterYear(inputValue);
     if (inputValue === "2023" || inputValue === "2024") {
       const filteredResults = data.filter(

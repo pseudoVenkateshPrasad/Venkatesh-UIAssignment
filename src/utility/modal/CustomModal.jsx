@@ -7,7 +7,6 @@ import {
 
 const CustomModal = ({ data, open, onClose, message }) => {
   const [isOpen, setIsOpen] = useState(true);
-  console.log(data);
   const {
     monthlySpent,
     monthlyPoints,

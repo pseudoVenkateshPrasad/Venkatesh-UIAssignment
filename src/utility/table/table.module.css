@@ -1,0 +1,49 @@
+table {
+  margin: 2em;
+}
+
+.headers {
+  color: #dcdcdc;
+  padding-bottom: 10px;
+  font-family: "Poppins", serif;
+  font-weight: 300;
+}
+
+.list {
+  color: #8a8a8a;
+  font-family: "Poppins", serif;
+  font-weight: 400;
+}
+
+.cellStyle {
+  border: 1px solid black;
+  padding: 8px;
+  text-align: justify;
+  min-width: 10em;
+  max-width: 15em;
+}
+.cellStyleView {
+  border: 1px solid black;
+  padding: 8px;
+  text-align: center !important;
+  width: 12em !important;
+  max-width: 12em !important;
+}
+.serialNumberCell {
+  border: 1px solid black;
+  padding: 6px;
+  text-align: left !important;
+  width: 8em !important;
+  max-width: 8em !important;
+}
+
+.viewBtn {
+  background-color: #007fff;
+  border: none;
+  outline: none;
+  padding: 0.5em 1em;
+  border-radius: 4px;
+  color: #fff;
+  cursor: pointer;
+  width: 6em;
+}
