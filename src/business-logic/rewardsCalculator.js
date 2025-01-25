@@ -1,5 +1,3 @@
-import { ALLTRANSACTIONS } from "../mockdata/data.js";
-
 // takes transaction amount and returns reward points for given amount
 
 export const calculatePoints = (amount) => {
@@ -17,19 +15,10 @@ export const calculatePoints = (amount) => {
     }
     return points;
   } catch (error) {
-    console.error("Error in calculatePoints:", error.message);
     return 0;
   }
 };
 
-// Promise to fetch all the transactions
-export const fetchTransactions = () => {
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      resolve(ALLTRANSACTIONS);
-    }, 1000);
-  });
-};
 
 // takes month number and returns String representing month
 export const getMonthName = (monthNumber) => {
@@ -58,7 +47,6 @@ export const getMonthName = (monthNumber) => {
     ];
     return monthNames[monthNumber - 1];
   } catch (error) {
-    console.error("Error in getMonthName:", error.message);
     return "Invalid month";
   }
 };
@@ -80,7 +68,7 @@ export const aggregatePoints = (transactions) => {
         if (!acc[customerId]) {
           acc[customerId] = {
             customerId,
-            name: transaction.customerName,
+            customerName: transaction.customerName,
             totalPoints: 0,
             totalSpent: 0,
             monthlyPoints: {},
@@ -101,7 +89,10 @@ export const aggregatePoints = (transactions) => {
         acc[customerId].totalPoints += points;
         acc[customerId].totalSpent += amount;
       } catch (error) {
-        console.error(`Error processing transaction for customer ID ${transaction.customerId}:`, error.message);
+        console.error(
+          `Error processing transaction for customer ID ${transaction.customerId}:`,
+          error.message
+        );
       }
 
       return acc;
@@ -110,7 +101,35 @@ export const aggregatePoints = (transactions) => {
     const resultArray = Object.values(pointsAndSpending);
     return resultArray;
   } catch (error) {
-    console.error("Error in aggregatePoints:", error.message);
     return [];
   }
+};
+
+export const roundFigure = (amount) => {
+  return parseFloat(amount.toFixed(2));
+};
+
+// export const getHeaders = (data) => {
+//   if (data.length > 0) {
+//     return Object.keys(data[0]);
+//   }
+//   return [];
+// };
+export const getHeaders = (data) => {
+  if (data.length > 0) {
+    return Object.keys(data[0]).filter(
+      (key) => typeof data[0][key] != 'object'
+    );
+  }
+  return [];
+};
+
+
+export const convertCamelCaseToProperName = (headers) => {
+  return headers.map(header => {
+    // Replace any uppercase letter with a space followed by the letter itself
+    let properName = header.replace(/([A-Z])/g, ' $1');
+    // Capitalize the first letter and return the transformed string
+    return properName.charAt(0).toUpperCase() + properName.slice(1);
+  });
 };

@@ -1,0 +1,31 @@
+.container {
+  height: 80vh;
+  padding: 2em;
+}
+
+.tabsContainer {
+  display: flex;
+  justify-content: start;
+  /* padding: 0 1em; */
+}
+
+.tabButton {
+  border: none;
+  padding: 0.5em 1em;
+  border-radius: 0.25em 0.25em 0 0;
+
+  cursor: pointer;
+}
+.tabButton:last-child {
+  margin: 0 0.5em;
+}
+
+.tabButton.active {
+  background-color: #007bff;
+  color: white;
+}
+
+.active {
+  background-color: #007bff;
+  color: white;
+}
