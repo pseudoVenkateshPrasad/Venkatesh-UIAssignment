@@ -1,10 +1,9 @@
 import React, { useEffect } from "react";
-// import TableCss from "../../components/main/main.module.css";
 import TableCss from "./table.module.css";
 import {
   roundFigure,
   convertCamelCaseToProperName,
-} from "../../business-logic/rewardsCalculator";
+} from "../../business-logic/utilityFunctions";
 const Table = (props) => {
   const { headers, data, hasActions, handleRowClick } = props;
 
@@ -29,7 +28,14 @@ const Table = (props) => {
               {hasActions && <th className={TableCss.cellStyleView}>Action</th>}
 
               {convertCamelCaseToProperName(headers)?.map((header) => (
-                <th className={header === "Customer Id" ? TableCss.serialNumberCell : TableCss.cellStyle} key={header}>
+                <th
+                  className={
+                    header === "Customer Id"
+                      ? TableCss.serialNumberCell
+                      : TableCss.cellStyle
+                  }
+                  key={header}
+                >
                   {header}
                 </th>
               ))}
@@ -50,7 +56,14 @@ const Table = (props) => {
                   </td>
                 )}
                 {headers?.map((key) => (
-                  <td className={key === "customerId" ? TableCss.serialNumberCell : TableCss.cellStyle} key={key}>
+                  <td
+                    className={
+                      key === "customerId"
+                        ? TableCss.serialNumberCell
+                        : TableCss.cellStyle
+                    }
+                    key={key}
+                  >
                     {rowValueRoundOff(row[key])}
                   </td>
                 ))}

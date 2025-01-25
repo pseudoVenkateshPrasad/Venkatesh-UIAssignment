@@ -16,21 +16,21 @@ table {
 }
 
 .cellStyle {
-  border: 1px solid black;
+  border: 1px solid #1a1919;
   padding: 8px;
   text-align: justify;
   min-width: 10em;
   max-width: 15em;
 }
 .cellStyleView {
-  border: 1px solid black;
+  border: 1px solid #1a1919;
   padding: 8px;
   text-align: center !important;
   width: 12em !important;
   max-width: 12em !important;
 }
 .serialNumberCell {
-  border: 1px solid black;
+  border: 1px solid #1a1919;
   padding: 6px;
   text-align: left !important;
   width: 8em !important;

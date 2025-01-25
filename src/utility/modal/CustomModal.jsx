@@ -3,7 +3,7 @@ import modalCss from "./custommodal.module.css";
 import {
   getMonthName,
   roundFigure,
-} from "../../business-logic/rewardsCalculator";
+} from "../../business-logic/utilityFunctions";
 
 const CustomModal = ({ data, open, onClose, message }) => {
   const [isOpen, setIsOpen] = useState(true);

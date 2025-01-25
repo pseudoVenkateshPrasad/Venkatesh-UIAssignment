@@ -8,6 +8,7 @@ function useDebounce(value, delay) {
       setDebouncedValue(value);
     }, delay);
 
+    // Clear the timeout 
     return () => {
       clearTimeout(handler);
     };

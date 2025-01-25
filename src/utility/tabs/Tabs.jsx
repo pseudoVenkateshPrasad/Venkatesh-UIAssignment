@@ -12,7 +12,6 @@ const Tabs = ({ children }) => {
 
   return (
     <div className={TabCss.container}>
-      {/* Tab Headers */}
       <div className={TabCss.tabsContainer}>
         {children.map((tab) => (
           <button

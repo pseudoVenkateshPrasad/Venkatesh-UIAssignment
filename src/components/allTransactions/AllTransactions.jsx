@@ -1,12 +1,7 @@
 import React, { useState, useEffect } from "react";
 import TransCss from "./alltransactions.module.css";
 import Loader from "../../utility/loader/Loader.jsx";
-
-import {
-  getHeaders,
-  convertCamelCaseToProperName,
-} from "../../business-logic/rewardsCalculator";
-
+import { getHeaders } from "../../business-logic/utilityFunctions.js";
 import Table from "../../utility/table/Table.jsx";
 import SearchBar from "../../utility/searchbar/SearchBar.jsx";
 import useDebounce from "../../customhooks/useDebounce.js";
@@ -16,14 +11,15 @@ const AllTransactions = () => {
   const [data, setData] = useState([]);
   const [headers, setHeaders] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
-
   const [filteredData, setFilteredData] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
   const [sortField, setSortField] = useState("transactionDate");
   const [filterYear, setFilterYear] = useState("");
 
+  // Debounce Custom Hook
   useDebounce(searchQuery, 500);
 
+  // Initial Render useEffect
   useEffect(() => {
     async function fetchData() {
       try {
@@ -42,6 +38,7 @@ const AllTransactions = () => {
     fetchData();
   }, []);
 
+
   useEffect(() => {
     if (data?.length > 0) {
       const keyValues = getHeaders(data);
@@ -49,6 +46,8 @@ const AllTransactions = () => {
     }
   }, [data]);
 
+
+  // Sorting handler based on selected Sorting option from dropdown
   const handleSort = (e) => {
     const sortField = e.target.value;
     setSortField(sortField);
@@ -64,7 +63,7 @@ const AllTransactions = () => {
     setFilteredData(sortedData);
   };
 
-  // Filter functionality for year
+  // Filter functionality for month/ year based
   const handleFilterYear = (e) => {
     const inputValue = e.target.value;
     setFilterYear(inputValue);
@@ -96,8 +95,6 @@ const AllTransactions = () => {
       ) : (
         <div className={TransCss.container}>
           <div className={TransCss.controls}>
-            {/* Search Bar */}
-
             <div className={TransCss.sortContainer}>
               {/* Sort Dropdown */}
               <select
@@ -125,12 +122,15 @@ const AllTransactions = () => {
               </select>
             </div>
 
+            {/* Search Bar Component*/}
             <SearchBar dataset={data} onSearchResult={setFilteredData} />
           </div>
 
-          {filteredData.length > 0 && (
+          {filteredData.length > 0 ? (
+            // Custom Table Component
             <Table headers={headers} data={filteredData} hasActions={false} />
-          )}
+          ) : 
+          <div className={TransCss.noRecords}>No Records Found !</div>}
         </div>
       )}
     </>

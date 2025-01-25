@@ -1,16 +1,14 @@
-/* CustomModal.css */
-
 .modalOverlay {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(0, 0, 0, 0.749); /* Background overlay */
+  background: rgba(0, 0, 0, 0.822); 
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 1000; /* Ensures it sits above other content */
+  z-index: 1000;
 }
 
 .modalContent {
@@ -86,6 +84,6 @@ table {
 .cellStyle {
   border: 1px solid black;
   padding: 8px;
-  textalign: left;
+  text-align: left;
   width: 20em;
 }

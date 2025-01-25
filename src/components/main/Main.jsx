@@ -1,8 +1,6 @@
 import { useEffect, useState } from "react";
-import {
-  getHeaders,
-  aggregatePoints,
-} from "../../business-logic/rewardsCalculator";
+import { aggregatePoints } from "../../business-logic/rewardsCalculator";
+import { getHeaders } from "../../business-logic/utilityFunctions";
 import MainCss from "./main.module.css";
 import Loader from "../../utility/loader/Loader";
 import CustomModal from "../../utility/modal/CustomModal";
@@ -17,19 +15,17 @@ function Main() {
   const [customerPoints, setCustomerPoints] = useState([]);
   const [allData, setAllData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [searchTerm, setSearchTerm] = useState("");
   const [openModal, setOpenModal] = useState(false);
   const [showData, setShowData] = useState({});
-
   const [headers, setHeaders] = useState(null);
-
   const [filteredData, setFilteredData] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
-  const [sortField, setSortField] = useState("transactionDate");
-  const [filterYear, setFilterYear] = useState("");
+  const [sortField, setSortField] = useState("default");
 
+  // Debounce Custom Hook
   useDebounce(searchQuery, 500);
 
+  // initial render useeffect
   useEffect(() => {
     async function fetchData() {
       try {
@@ -51,15 +47,18 @@ function Main() {
     fetchData();
   }, []);
 
+  // modal open handler
   const openModalHandler = (data) => {
     setOpenModal(true);
     setShowData(data);
   };
 
+  // modal close handler
   function onClose() {
     setOpenModal(false);
   }
 
+  // Sorting handler based on selected Sorting option from dropdown
   const handleSort = (e) => {
     const sortField = e.target.value;
     setSortField(sortField);
@@ -94,6 +93,7 @@ function Main() {
                 <option value="totalSpent">Sort by Total Spent</option>
               </select>
             </div>
+            {/* Search Bar Component */}
             <SearchBar
               dataset={customerPoints}
               onSearchResult={setFilteredData}
@@ -101,6 +101,7 @@ function Main() {
           </div>
 
           {customerPoints?.length > 0 ? (
+            // Custom Table Component
             <Table
               headers={headers}
               data={filteredData}
